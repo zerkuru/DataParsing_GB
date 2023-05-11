@@ -6,7 +6,9 @@
 import scrapy
 
 
-class MvscraperItem(scrapy.Item):
+class LBscraperItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    name = scrapy.Field()
+    price = scrapy.Field()
+    _id = scrapy.Field()
     pass

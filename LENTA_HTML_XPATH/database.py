@@ -18,6 +18,7 @@ def makebase():
       datestring TEXT);
       """)
     connector_db.commit()
+    connector_db.close()
 
 
 def inputnews_json(json_string):
@@ -37,12 +38,12 @@ def inputnews_json(json_string):
         keys= tuple(row[c] for c in columns)
         cursor.execute('insert into news values(?,?,?)',keys)
         print(f'{row["title"]} data inserted Succefully')
-        
+
     connector_db.commit()
+    connector_db.close()
 
 
-connection.commit()
-connection.close()
+
  
 
 

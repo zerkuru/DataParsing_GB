@@ -1,28 +1,30 @@
-import parse_lenta
-import database
+import LENTA_HTML_XPATH.parse_lenta as parse_lenta
+import LENTA_HTML_XPATH.database as database
 import requests
+import json
+from lxml import html
 
 
 print ("Welcome to news parsing app")
 
 #
- # Импортируем библиотек Requests
- 
- 
-# Основная функция
+
 def main():
-    # URL страницы
+    
     url = 'https://lenta.ru//'
-    # Получаем страницу
+  
     r = requests.get(url)
-    # Открываем файл
-    with open('lenta_today.html', 'w', encoding='utf-8') as output_file:
-        # Выводим страницу в HTML файл
-        output_file.write(r.text)
- 
+
+    json_string = parse_lenta.parse_for_news(r)
+
+    database.make_base()
+
+    database.inputnews_json(json_string)
+
+    print("Thank you for using the app!")
+
  
 # Запуск кода
 if __name__ == '__main__':
     main()
 
-    
